@@ -32,7 +32,8 @@
 
         public function depositar($v){
             if ($this->getStatus()){
-              $this-> setSaldo($this-> getSaldo() + $v);   
+              $this-> setSaldo($this-> getSaldo() + $v); 
+              echo "<p>Deposito de R$ $v realizado na conta de ". $this->getDono(). "</p>";  
             }
          else {
             echo "<p>Conta fechada. Não é possível depositar!</p>";
@@ -43,19 +44,35 @@
             if ($this->getStatus()) {
             if ($this->getSaldo() > $v){
                 $this->setSaldo($this->getSaldo() - $v);
+                echo "<p>Saque de R$ $v autorizado na conta de ". $this->getDono(). "</p>";
             } else {
-                echo "<p></p>";
-            }
+                echo "<p>Saldo insuficiente para saque!</p>";
+            } } else {
+                echo "<p>Não posso sacar de uma conta fechada.</p>";
             }
         }
 
         public function pagarMensal(){
+            if ($this->getTipo()=="CC"){
+                $v = 12;
+            } else if ($this->getTipo()=="CP"){
+                $v = 20;
+            }
+            if ($this->getStatus()){
+                $this->setSaldo($this->getSaldo()- $v);
+                echo "<p>Pagamento mensal de R$ $v realizado na conta de ". $this->getDono(). "</p>";
+            } else {
+                echo "<p>Problemas com a conta. Não é possível realizar o pagamento.</p>";
+            }
 
         }
 
         //Métodos Especiais
         public function __construct()
         {
+            $this->setSaldo(0);
+            $this->setStatus(false);
+            echo "<p>Conta criada com sucesso!</p>";
             
         }
 
