@@ -102,6 +102,7 @@
         }
 
 
+
         public function apresentar(){
             echo "<p>-----------------------------</p>";
             echo "<p>CHEGOU A HORA! O lutador: " . $this-> getNome();
