@@ -9,7 +9,6 @@
     <pre>
         <?php
 
-use PgSql\Lob;
 
             require_once 'Animal.php';
             require_once 'Mamifero.php';
